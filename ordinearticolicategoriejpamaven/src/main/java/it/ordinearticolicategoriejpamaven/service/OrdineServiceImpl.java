@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import it.ordinearticolicategoriejpamaven.dao.EntityManagerUtil;
 import it.ordinearticolicategoriejpamaven.dao.OrdineDAO;
 import it.ordinearticolicategoriejpamaven.model.Articolo;
+import it.ordinearticolicategoriejpamaven.model.Categoria;
 import it.ordinearticolicategoriejpamaven.model.Ordine;
 
 public class OrdineServiceImpl implements OrdineService {
@@ -132,6 +133,23 @@ public class OrdineServiceImpl implements OrdineService {
 	public void setOrdineDAO(OrdineDAO ordineDAO) {
 		this.ordineDAO = ordineDAO;
 
+	}
+
+	@Override
+	public List<Ordine> cercaTuttiGliOrdiniEffettuatiDaUnaCategoria(Categoria categoriaInstance) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			ordineDAO.setEntityManager(entityManager);
+
+			return ordineDAO.findAllByCategoria(categoriaInstance);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
 	}
 
 }

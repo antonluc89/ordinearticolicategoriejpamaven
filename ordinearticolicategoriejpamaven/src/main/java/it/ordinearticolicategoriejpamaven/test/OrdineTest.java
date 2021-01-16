@@ -121,6 +121,14 @@ public class OrdineTest {
 			if (articoloDaCollegare != null) {
 				articoloServiceInstance.aggiungiCategorie(articoloDaCollegare, categoriaDaInserireECollegare);
 			}
+			
+			System.out.println("*********** PROVA TROVA GLI ORDINI BY CATEGORIA ***********");
+			Long idCategoriaRicercaOrdini = 4L;
+			Categoria categoriRicercaOrdini = categoriaServiceInstance.caricaSingoloElemento(idCategoriaRicercaOrdini);
+			for (Ordine ordineItem : ordineServiceInstance
+					.cercaTuttiGliOrdiniEffettuatiDaUnaCategoria(categoriRicercaOrdini)) {
+				System.out.println(ordineItem);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

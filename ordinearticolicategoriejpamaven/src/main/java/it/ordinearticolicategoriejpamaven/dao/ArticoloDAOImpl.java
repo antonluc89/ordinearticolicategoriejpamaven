@@ -23,28 +23,28 @@ public class ArticoloDAOImpl implements ArticoloDAO {
 	}
 
 	@Override
-	public void update(Articolo articoliInstance) throws Exception {
-		if (articoliInstance == null) {
+	public void update(Articolo articoloInstance) throws Exception {
+		if (articoloInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
-		articoliInstance = entityManager.merge(articoliInstance);
+		articoloInstance = entityManager.merge(articoloInstance);
 	}
 
 	@Override
-	public void insert(Articolo articoliInstance) throws Exception {
-		if (articoliInstance == null) {
+	public void insert(Articolo articoloInstance) throws Exception {
+		if (articoloInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
 
-		entityManager.persist(articoliInstance);
+		entityManager.persist(articoloInstance);
 	}
 
 	@Override
-	public void delete(Articolo articoliInstance) throws Exception {
-		if (articoliInstance == null) {
+	public void delete(Articolo articoloInstance) throws Exception {
+		if (articoloInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
-		entityManager.remove(entityManager.merge(articoliInstance));
+		entityManager.remove(entityManager.merge(articoloInstance));
 	}
 
 	@Override
@@ -53,10 +53,10 @@ public class ArticoloDAOImpl implements ArticoloDAO {
 	}
 
 	@Override
-	public List<Articolo> findAllByCategoria(Categoria categorieInput) {
+	public List<Articolo> findAllByCategoria(Categoria categoriaInput) {
 		TypedQuery<Articolo> query = entityManager
-				.createQuery("select a FROM Articoli a join a.categorie c where c = :categorie", Articolo.class);
-		query.setParameter("categorie", categorieInput);
+				.createQuery("select a FROM Articolo a join a.categorie c where c = :categoria", Articolo.class);
+		query.setParameter("categoria", categoriaInput);
 		return query.getResultList();
 	}
 

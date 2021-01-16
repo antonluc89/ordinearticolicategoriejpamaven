@@ -11,18 +11,18 @@ import it.ordinearticolicategoriejpamaven.model.Categoria;
 
 public class CategoriaServiceImpl implements CategoriaService {
 
-	private CategoriaDAO categorieDAO;
+	private CategoriaDAO categoriaDAO;
 
-	private ArticoloService articoliService = MyServiceFactory.getArticoliServiceInstance();
+	private ArticoloService articoloService = MyServiceFactory.getArticoloServiceInstance();
 
 	@Override
 	public List<Categoria> listAll() throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
-			categorieDAO.setEntityManager(entityManager);
+			categoriaDAO.setEntityManager(entityManager);
 
-			return categorieDAO.list();
+			return categoriaDAO.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -36,9 +36,9 @@ public class CategoriaServiceImpl implements CategoriaService {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
-			categorieDAO.setEntityManager(entityManager);
+			categoriaDAO.setEntityManager(entityManager);
 
-			return categorieDAO.get(id);
+			return categoriaDAO.get(id);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,28 +55,9 @@ public class CategoriaServiceImpl implements CategoriaService {
 		try {
 			entityManager.getTransaction().begin();
 
-			categorieDAO.setEntityManager(entityManager);
+			categoriaDAO.setEntityManager(entityManager);
 
-			categorieDAO.update(categorieInstance);
-
-			entityManager.getTransaction().commit();
-		} catch (Exception e) {
-			entityManager.getTransaction().rollback();
-			e.printStackTrace();
-			throw e;
-		}
-	}
-
-	@Override
-	public void inserisciNuovo(Categoria categorieInstance) throws Exception {
-		EntityManager entityManager = EntityManagerUtil.getEntityManager();
-
-		try {
-			entityManager.getTransaction().begin();
-
-			categorieDAO.setEntityManager(entityManager);
-
-			categorieDAO.insert(categorieInstance);
+			categoriaDAO.update(categorieInstance);
 
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
@@ -87,23 +68,42 @@ public class CategoriaServiceImpl implements CategoriaService {
 	}
 
 	@Override
-	public void rimuovi(Categoria categorieInstance) throws Exception {
+	public void inserisciNuovo(Categoria categoriaInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
 			entityManager.getTransaction().begin();
 
-			categorieDAO.setEntityManager(entityManager);
+			categoriaDAO.setEntityManager(entityManager);
 
-			List<Articolo> listaArticoliNeldB = articoliService
-					.cercaTuttiGliArticoliTramiteCategorie(categorieInstance);
+			categoriaDAO.insert(categoriaInstance);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public void rimuovi(Categoria categoriaInstance) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			entityManager.getTransaction().begin();
+
+			categoriaDAO.setEntityManager(entityManager);
+
+			List<Articolo> listaArticoliNeldB = articoloService
+					.cercaTuttiGliArticoliTramiteCategorie(categoriaInstance);
 			if (!listaArticoliNeldB.isEmpty())
-				for (Articolo articoliItem : listaArticoliNeldB) {
-					articoliItem.setCategorie(null);
+				for (Articolo articoloItem : listaArticoliNeldB) {
+					articoloItem.setCategorie(null);
 
-					articoliService.aggiorna(articoliItem);
+					articoloService.aggiorna(articoloItem);
 				}
-			categorieDAO.delete(categorieInstance);
+			categoriaDAO.delete(categoriaInstance);
 
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
@@ -114,8 +114,8 @@ public class CategoriaServiceImpl implements CategoriaService {
 	}
 
 	@Override
-	public void setCategorieDAO(CategoriaDAO categorieDAO) {
-		this.categorieDAO = categorieDAO;
+	public void setCategoriaDAO(CategoriaDAO categoriaDAO) {
+		this.categoriaDAO = categoriaDAO;
 
 	}
 

@@ -12,7 +12,7 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 	@Override
 	public List<Categoria> list() throws Exception {
-		return entityManager.createQuery("from Categorie", Categoria.class).getResultList();
+		return entityManager.createQuery("from Categoria", Categoria.class).getResultList();
 	}
 
 	@Override
@@ -21,28 +21,28 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 	}
 
 	@Override
-	public void update(Categoria categorieInstance) throws Exception {
-		if (categorieInstance == null) {
+	public void update(Categoria categoriaInstance) throws Exception {
+		if (categoriaInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
-		categorieInstance = entityManager.merge(categorieInstance);
+		categoriaInstance = entityManager.merge(categoriaInstance);
 	}
 
 	@Override
-	public void insert(Categoria categorieInstance) throws Exception {
-		if (categorieInstance == null) {
+	public void insert(Categoria categoriaInstance) throws Exception {
+		if (categoriaInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
 
-		entityManager.persist(categorieInstance);
+		entityManager.persist(categoriaInstance);
 	}
 
 	@Override
-	public void delete(Categoria categorieInstance) throws Exception {
-		if (categorieInstance == null) {
+	public void delete(Categoria categoriaInstance) throws Exception {
+		if (categoriaInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
-		entityManager.remove(entityManager.merge(categorieInstance));
+		entityManager.remove(entityManager.merge(categoriaInstance));
 	}
 
 	@Override

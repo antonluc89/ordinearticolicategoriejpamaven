@@ -11,16 +11,16 @@ public interface ArticoloService {
 
 	public Articolo caricaSingoloElemento(Long id) throws Exception;
 
-	public void aggiorna(Articolo articoliInstance) throws Exception;
+	public void aggiorna(Articolo articoloInstance) throws Exception;
 
-	public void inserisciNuovo(Articolo articoliInstance) throws Exception;
+	public void inserisciNuovo(Articolo articoloInstance) throws Exception;
 
-	public void rimuovi(Articolo articoliInstance) throws Exception;
+	public void rimuovi(Articolo articoloInstance) throws Exception;
 
-	public List<Articolo> cercaTuttiGliArticoliTramiteCategorie(Categoria categorieInstance) throws Exception;
+	public List<Articolo> cercaTuttiGliArticoliTramiteCategorie(Categoria categoriaInstance) throws Exception;
 
-	public void aggiungiCategorie(Articolo articoliInstance, Categoria categorieInstance) throws Exception;
+	public void aggiungiCategorie(Articolo articoloInstance, Categoria categoriaInstance) throws Exception;
 
-	public void setArticoliDAO(ArticoloDAO articoliDAO);
+	public void setArticoloDAO(ArticoloDAO articoloDAO);
 
 }

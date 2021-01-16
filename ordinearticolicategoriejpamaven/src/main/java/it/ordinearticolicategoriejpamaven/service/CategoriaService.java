@@ -11,12 +11,12 @@ public interface CategoriaService {
 
 	public Categoria caricaSingoloElemento(Long id) throws Exception;
 
-	public void aggiorna(Categoria categorieInstance) throws Exception;
+	public void aggiorna(Categoria categoriaInstance) throws Exception;
 
-	public void inserisciNuovo(Categoria categorieInstance) throws Exception;
+	public void inserisciNuovo(Categoria categoriaInstance) throws Exception;
 
-	public void rimuovi(Categoria categorieInstance) throws Exception;
+	public void rimuovi(Categoria categoriaInstance) throws Exception;
 
-	public void setCategorieDAO(CategoriaDAO categorieDAO);
+	public void setCategoriaDAO(CategoriaDAO categoriaDAO);
 
 }

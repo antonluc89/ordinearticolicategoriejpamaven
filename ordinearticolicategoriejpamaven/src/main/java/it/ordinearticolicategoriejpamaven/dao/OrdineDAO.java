@@ -7,6 +7,6 @@ import it.ordinearticolicategoriejpamaven.model.Ordine;
 
 public interface OrdineDAO extends IBaseDAO<Ordine> {
 
-	public List<Ordine> findAllByArticoli(Articolo articoliInput);
+	public List<Ordine> findAllByArticolo(Articolo articoloInput);
 
 }

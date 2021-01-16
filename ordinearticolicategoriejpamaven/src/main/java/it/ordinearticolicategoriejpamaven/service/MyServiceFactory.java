@@ -5,8 +5,8 @@ import it.ordinearticolicategoriejpamaven.dao.MyDAOFactory;
 public class MyServiceFactory {
 
 	private static OrdineService ORDINE_SERVICE_INSTANCE;
-	private static ArticoloService ARTICOLI_SERVICE_INSTANCE;
-	private static CategoriaService CATEGORIE_SERVICE_INSTANCE;
+	private static ArticoloService ARTICOLO_SERVICE_INSTANCE;
+	private static CategoriaService CATEGORIA_SERVICE_INSTANCE;
 
 	public static OrdineService getOrdineServiceInstance() {
 		if (ORDINE_SERVICE_INSTANCE == null)
@@ -16,20 +16,20 @@ public class MyServiceFactory {
 		return ORDINE_SERVICE_INSTANCE;
 	}
 
-	public static ArticoloService getArticoliServiceInstance() {
-		if (ARTICOLI_SERVICE_INSTANCE == null)
-			ARTICOLI_SERVICE_INSTANCE = new ArticoloServiceImpl();
+	public static ArticoloService getArticoloServiceInstance() {
+		if (ARTICOLO_SERVICE_INSTANCE == null)
+			ARTICOLO_SERVICE_INSTANCE = new ArticoloServiceImpl();
 
-		ARTICOLI_SERVICE_INSTANCE.setArticoliDAO(MyDAOFactory.getArticoliDAOInstance());
-		return ARTICOLI_SERVICE_INSTANCE;
+		ARTICOLO_SERVICE_INSTANCE.setArticoloDAO(MyDAOFactory.getArticoloDAOInstance());
+		return ARTICOLO_SERVICE_INSTANCE;
 	}
 
-	public static CategoriaService getCategorieServiceInstance() {
-		if (CATEGORIE_SERVICE_INSTANCE == null)
-			CATEGORIE_SERVICE_INSTANCE = new CategoriaServiceImpl();
+	public static CategoriaService getCategoriaServiceInstance() {
+		if (CATEGORIA_SERVICE_INSTANCE == null)
+			CATEGORIA_SERVICE_INSTANCE = new CategoriaServiceImpl();
 
-		CATEGORIE_SERVICE_INSTANCE.setCategorieDAO(MyDAOFactory.getCategorieDAOInstance());
-		return CATEGORIE_SERVICE_INSTANCE;
+		CATEGORIA_SERVICE_INSTANCE.setCategoriaDAO(MyDAOFactory.getCategoriaDAOInstance());
+		return CATEGORIA_SERVICE_INSTANCE;
 	}
 
 }

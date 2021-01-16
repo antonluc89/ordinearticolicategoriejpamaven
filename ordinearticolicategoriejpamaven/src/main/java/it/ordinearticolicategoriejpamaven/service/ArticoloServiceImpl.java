@@ -12,7 +12,7 @@ import it.ordinearticolicategoriejpamaven.model.Ordine;
 
 public class ArticoloServiceImpl implements ArticoloService {
 
-	private ArticoloDAO articoliDAO;
+	private ArticoloDAO articoloDAO;
 
 	private OrdineService ordineService = MyServiceFactory.getOrdineServiceInstance();
 
@@ -21,9 +21,9 @@ public class ArticoloServiceImpl implements ArticoloService {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
-			articoliDAO.setEntityManager(entityManager);
+			articoloDAO.setEntityManager(entityManager);
 
-			return articoliDAO.list();
+			return articoloDAO.list();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,9 +38,9 @@ public class ArticoloServiceImpl implements ArticoloService {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
-			articoliDAO.setEntityManager(entityManager);
+			articoloDAO.setEntityManager(entityManager);
 
-			return articoliDAO.get(id);
+			return articoloDAO.get(id);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,9 +57,9 @@ public class ArticoloServiceImpl implements ArticoloService {
 		try {
 			entityManager.getTransaction().begin();
 
-			articoliDAO.setEntityManager(entityManager);
+			articoloDAO.setEntityManager(entityManager);
 
-			articoliDAO.update(articoliInstance);
+			articoloDAO.update(articoliInstance);
 
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
@@ -77,9 +77,9 @@ public class ArticoloServiceImpl implements ArticoloService {
 		try {
 			entityManager.getTransaction().begin();
 
-			articoliDAO.setEntityManager(entityManager);
+			articoloDAO.setEntityManager(entityManager);
 
-			articoliDAO.insert(articoliInstance);
+			articoloDAO.insert(articoliInstance);
 
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
@@ -91,16 +91,16 @@ public class ArticoloServiceImpl implements ArticoloService {
 	}
 
 	@Override
-	public void rimuovi(Articolo articoliInstance) throws Exception {
+	public void rimuovi(Articolo articoloInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
 
 			entityManager.getTransaction().begin();
 
-			articoliDAO.setEntityManager(entityManager);
+			articoloDAO.setEntityManager(entityManager);
 
-			List<Ordine> listaOrdineNeldB = ordineService.cercaTuttiGliOrdiniTramiteArticoli(articoliInstance);
+			List<Ordine> listaOrdineNeldB = ordineService.cercaTuttiGliOrdiniTramiteArticoli(articoloInstance);
 			if (!listaOrdineNeldB.isEmpty())
 				for (Ordine ordineItem : listaOrdineNeldB) {
 					ordineItem.setArticoli(null);
@@ -108,7 +108,7 @@ public class ArticoloServiceImpl implements ArticoloService {
 
 					ordineService.aggiorna(ordineItem);
 				}
-			articoliDAO.delete(articoliInstance);
+			articoloDAO.delete(articoloInstance);
 
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
@@ -119,13 +119,13 @@ public class ArticoloServiceImpl implements ArticoloService {
 	}
 
 	@Override
-	public List<Articolo> cercaTuttiGliArticoliTramiteCategorie(Categoria categorieInstance) throws Exception {
+	public List<Articolo> cercaTuttiGliArticoliTramiteCategorie(Categoria categoriaInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
-			articoliDAO.setEntityManager(entityManager);
+			articoloDAO.setEntityManager(entityManager);
 
-			return articoliDAO.findAllByCategoria(categorieInstance);
+			return articoloDAO.findAllByCategoria(categoriaInstance);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,20 +136,20 @@ public class ArticoloServiceImpl implements ArticoloService {
 	}
 
 	@Override
-	public void aggiungiCategorie(Articolo articoliInstance, Categoria categorieInstance) throws Exception {
+	public void aggiungiCategorie(Articolo articoloInstance, Categoria categoriaInstance) throws Exception {
 
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
 			entityManager.getTransaction().begin();
 
-			articoliDAO.setEntityManager(entityManager);
+			articoloDAO.setEntityManager(entityManager);
 
-			articoliInstance = entityManager.merge(articoliInstance);
+			articoloInstance = entityManager.merge(articoloInstance);
 
-			categorieInstance = entityManager.merge(categorieInstance);
+			categoriaInstance = entityManager.merge(categoriaInstance);
 
-			articoliInstance.getCategorie().add(categorieInstance);
+			articoloInstance.getCategorie().add(categoriaInstance);
 
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
@@ -161,8 +161,8 @@ public class ArticoloServiceImpl implements ArticoloService {
 	}
 
 	@Override
-	public void setArticoliDAO(ArticoloDAO articoliDAO) {
-		this.articoliDAO = articoliDAO;
+	public void setArticoloDAO(ArticoloDAO articoloDAO) {
+		this.articoloDAO = articoloDAO;
 
 	}
 

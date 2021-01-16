@@ -112,13 +112,13 @@ public class OrdineServiceImpl implements OrdineService {
 	}
 
 	@Override
-	public List<Ordine> cercaTuttiGliOrdiniTramiteArticoli(Articolo articoliInstance) throws Exception {
+	public List<Ordine> cercaTuttiGliOrdiniTramiteArticoli(Articolo articoloInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
 			ordineDAO.setEntityManager(entityManager);
 
-			return ordineDAO.findAllByArticoli(articoliInstance);
+			return ordineDAO.findAllByArticolo(articoloInstance);
 
 		} catch (Exception e) {
 			e.printStackTrace();

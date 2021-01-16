@@ -8,6 +8,7 @@ import it.ordinearticolicategoriejpamaven.dao.CategoriaDAO;
 import it.ordinearticolicategoriejpamaven.dao.EntityManagerUtil;
 import it.ordinearticolicategoriejpamaven.model.Articolo;
 import it.ordinearticolicategoriejpamaven.model.Categoria;
+import it.ordinearticolicategoriejpamaven.model.Ordine;
 
 public class CategoriaServiceImpl implements CategoriaService {
 
@@ -117,6 +118,23 @@ public class CategoriaServiceImpl implements CategoriaService {
 	public void setCategoriaDAO(CategoriaDAO categoriaDAO) {
 		this.categoriaDAO = categoriaDAO;
 
+	}
+
+	@Override
+	public List<Categoria> trovaTutteLeCategorieDegliArticoliDiUnDatoordine(Ordine ordineInstance) {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			categoriaDAO.setEntityManager(entityManager);
+
+			return categoriaDAO.findAllCategoriaByArticoloInReleatedOrder(ordineInstance);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
 	}
 
 }

@@ -129,6 +129,14 @@ public class OrdineTest {
 					.cercaTuttiGliOrdiniEffettuatiDaUnaCategoria(categoriRicercaOrdini)) {
 				System.out.println(ordineItem);
 			}
+			
+			System.out.println("*********** PROVA TROVA LE CATEGORIE DEGLI ARTICOLI PRESENTI IN UN ORDINE ***********");
+			Long idOrdinePerRicercaCategorie = 2L;
+			Ordine ordinePerRicerca = ordineServiceInstance.caricaSingoloElemento(idOrdinePerRicercaCategorie);
+			for (Categoria categoriaItem : categoriaServiceInstance
+					.trovaTutteLeCategorieDegliArticoliDiUnDatoordine(ordinePerRicerca)) {
+				System.out.println(categoriaItem);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

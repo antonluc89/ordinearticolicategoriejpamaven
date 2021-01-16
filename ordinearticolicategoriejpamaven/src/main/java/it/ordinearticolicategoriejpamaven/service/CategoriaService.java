@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.ordinearticolicategoriejpamaven.dao.CategoriaDAO;
 import it.ordinearticolicategoriejpamaven.model.Categoria;
+import it.ordinearticolicategoriejpamaven.model.Ordine;
 
 public interface CategoriaService {
 
@@ -16,6 +17,8 @@ public interface CategoriaService {
 	public void inserisciNuovo(Categoria categoriaInstance) throws Exception;
 
 	public void rimuovi(Categoria categoriaInstance) throws Exception;
+	
+	public List<Categoria> trovaTutteLeCategorieDegliArticoliDiUnDatoordine(Ordine ordineInstance);
 
 	public void setCategoriaDAO(CategoriaDAO categoriaDAO);
 

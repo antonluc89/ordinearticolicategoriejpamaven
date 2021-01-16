@@ -3,8 +3,11 @@ package it.ordinearticolicategoriejpamaven.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
+import it.ordinearticolicategoriejpamaven.model.Articolo;
 import it.ordinearticolicategoriejpamaven.model.Categoria;
+import it.ordinearticolicategoriejpamaven.model.Ordine;
 
 public class CategoriaDAOImpl implements CategoriaDAO {
 
@@ -48,6 +51,14 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 	@Override
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
+	}
+
+	@Override
+	public List<Categoria> findAllCategoriaByArticoloInReleatedOrder(Ordine ordineInput) {
+		TypedQuery<Categoria> query = entityManager
+				.createQuery("select c FROM Categoria c join c.articoli a join a.ordine o where o = :ordine", Categoria.class);
+		query.setParameter("ordine", ordineInput);
+		return query.getResultList();
 	}
 
 }

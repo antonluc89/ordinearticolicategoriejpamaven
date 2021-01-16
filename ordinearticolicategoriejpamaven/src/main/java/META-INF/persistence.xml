@@ -5,8 +5,8 @@
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="ordinearticolicategorie_unit" transaction-type="RESOURCE_LOCAL">
 		<class>it.ordinearticolicategoriejpamaven.model.Ordine</class>
-		<class>it.ordinearticolicategoriejpamaven.model.Articoli</class>
-		<class>it.ordinearticolicategoriejpamaven.model.Categorie</class>
+		<class>it.ordinearticolicategoriejpamaven.model.Articolo</class>
+		<class>it.ordinearticolicategoriejpamaven.model.Categoria</class>
 		<properties>
 			<!-- setup con MySql -->
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />

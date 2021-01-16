@@ -4,24 +4,24 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import it.ordinearticolicategoriejpamaven.model.Categorie;
+import it.ordinearticolicategoriejpamaven.model.Categoria;
 
-public class CategorieDAOImpl implements CategorieDAO {
+public class CategoriaDAOImpl implements CategoriaDAO {
 
 	private EntityManager entityManager;
 
 	@Override
-	public List<Categorie> list() throws Exception {
-		return entityManager.createQuery("from Categorie", Categorie.class).getResultList();
+	public List<Categoria> list() throws Exception {
+		return entityManager.createQuery("from Categorie", Categoria.class).getResultList();
 	}
 
 	@Override
-	public Categorie get(Long id) throws Exception {
-		return entityManager.find(Categorie.class, id);
+	public Categoria get(Long id) throws Exception {
+		return entityManager.find(Categoria.class, id);
 	}
 
 	@Override
-	public void update(Categorie categorieInstance) throws Exception {
+	public void update(Categoria categorieInstance) throws Exception {
 		if (categorieInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
@@ -29,7 +29,7 @@ public class CategorieDAOImpl implements CategorieDAO {
 	}
 
 	@Override
-	public void insert(Categorie categorieInstance) throws Exception {
+	public void insert(Categoria categorieInstance) throws Exception {
 		if (categorieInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
@@ -38,7 +38,7 @@ public class CategorieDAOImpl implements CategorieDAO {
 	}
 
 	@Override
-	public void delete(Categorie categorieInstance) throws Exception {
+	public void delete(Categoria categorieInstance) throws Exception {
 		if (categorieInstance == null) {
 			throw new Exception("Problema valore in input");
 		}

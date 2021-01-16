@@ -4,19 +4,19 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import it.ordinearticolicategoriejpamaven.dao.CategorieDAO;
+import it.ordinearticolicategoriejpamaven.dao.CategoriaDAO;
 import it.ordinearticolicategoriejpamaven.dao.EntityManagerUtil;
-import it.ordinearticolicategoriejpamaven.model.Articoli;
-import it.ordinearticolicategoriejpamaven.model.Categorie;
+import it.ordinearticolicategoriejpamaven.model.Articolo;
+import it.ordinearticolicategoriejpamaven.model.Categoria;
 
-public class CategorieServiceImpl implements CategorieService {
+public class CategoriaServiceImpl implements CategoriaService {
 
-	private CategorieDAO categorieDAO;
+	private CategoriaDAO categorieDAO;
 
-	private ArticoliService articoliService = MyServiceFactory.getArticoliServiceInstance();
+	private ArticoloService articoliService = MyServiceFactory.getArticoliServiceInstance();
 
 	@Override
-	public List<Categorie> listAll() throws Exception {
+	public List<Categoria> listAll() throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -32,7 +32,7 @@ public class CategorieServiceImpl implements CategorieService {
 	}
 
 	@Override
-	public Categorie caricaSingoloElemento(Long id) throws Exception {
+	public Categoria caricaSingoloElemento(Long id) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -49,7 +49,7 @@ public class CategorieServiceImpl implements CategorieService {
 	}
 
 	@Override
-	public void aggiorna(Categorie categorieInstance) throws Exception {
+	public void aggiorna(Categoria categorieInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -68,7 +68,7 @@ public class CategorieServiceImpl implements CategorieService {
 	}
 
 	@Override
-	public void inserisciNuovo(Categorie categorieInstance) throws Exception {
+	public void inserisciNuovo(Categoria categorieInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -87,7 +87,7 @@ public class CategorieServiceImpl implements CategorieService {
 	}
 
 	@Override
-	public void rimuovi(Categorie categorieInstance) throws Exception {
+	public void rimuovi(Categoria categorieInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -95,10 +95,10 @@ public class CategorieServiceImpl implements CategorieService {
 
 			categorieDAO.setEntityManager(entityManager);
 
-			List<Articoli> listaArticoliNeldB = articoliService
+			List<Articolo> listaArticoliNeldB = articoliService
 					.cercaTuttiGliArticoliTramiteCategorie(categorieInstance);
 			if (!listaArticoliNeldB.isEmpty())
-				for (Articoli articoliItem : listaArticoliNeldB) {
+				for (Articolo articoliItem : listaArticoliNeldB) {
 					articoliItem.setCategorie(null);
 
 					articoliService.aggiorna(articoliItem);
@@ -114,7 +114,7 @@ public class CategorieServiceImpl implements CategorieService {
 	}
 
 	@Override
-	public void setCategorieDAO(CategorieDAO categorieDAO) {
+	public void setCategorieDAO(CategoriaDAO categorieDAO) {
 		this.categorieDAO = categorieDAO;
 
 	}

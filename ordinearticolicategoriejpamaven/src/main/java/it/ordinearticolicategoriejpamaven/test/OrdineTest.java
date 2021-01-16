@@ -1,19 +1,19 @@
 package it.ordinearticolicategoriejpamaven.test;
 
 import it.ordinearticolicategoriejpamaven.dao.EntityManagerUtil;
-import it.ordinearticolicategoriejpamaven.model.Articoli;
-import it.ordinearticolicategoriejpamaven.model.Categorie;
+import it.ordinearticolicategoriejpamaven.model.Articolo;
+import it.ordinearticolicategoriejpamaven.model.Categoria;
 import it.ordinearticolicategoriejpamaven.model.Ordine;
-import it.ordinearticolicategoriejpamaven.service.ArticoliService;
-import it.ordinearticolicategoriejpamaven.service.CategorieService;
+import it.ordinearticolicategoriejpamaven.service.ArticoloService;
+import it.ordinearticolicategoriejpamaven.service.CategoriaService;
 import it.ordinearticolicategoriejpamaven.service.MyServiceFactory;
 import it.ordinearticolicategoriejpamaven.service.OrdineService;
 
 public class OrdineTest {
 	public static void main(String[] args) {
 		OrdineService ordineServiceInstance = MyServiceFactory.getOrdineServiceInstance();
-		ArticoliService articoliServiceInstance = MyServiceFactory.getArticoliServiceInstance();
-		CategorieService categorieServiceInstance = MyServiceFactory.getCategorieServiceInstance();
+		ArticoloService articoliServiceInstance = MyServiceFactory.getArticoliServiceInstance();
+		CategoriaService categorieServiceInstance = MyServiceFactory.getCategorieServiceInstance();
 
 		try {
 
@@ -47,20 +47,20 @@ public class OrdineTest {
 			System.out.println("*********** PROVA INSERISCI ARTICOLO ***********");
 			Long idOrdineACuiCollegare = 3L;
 			Ordine ordineACuiCollegare = ordineServiceInstance.caricaSingoloElemento(idOrdineACuiCollegare);
-			Articoli articoliNuovo = new Articoli("cappa", 100);
+			Articolo articoliNuovo = new Articolo("cappa", 100);
 			articoliNuovo.setOrdine(ordineACuiCollegare);
 			articoliServiceInstance.inserisciNuovo(articoliNuovo);
 
 			System.out.println("*********** PROVA RIMOZIONE ARTICOLI ***********");
 			Long idArticoloDaRimuovere = 2L;
-			Articoli articoloDaRimuovere = articoliServiceInstance.caricaSingoloElemento(idArticoloDaRimuovere);
+			Articolo articoloDaRimuovere = articoliServiceInstance.caricaSingoloElemento(idArticoloDaRimuovere);
 			if (idArticoloDaRimuovere != null) {
 				System.out.println("Articolo da rimuovere caricato con successo: " + articoloDaRimuovere);
 				articoliServiceInstance.rimuovi(articoloDaRimuovere);
 			}
 
 			System.out.println("*********** PROVA LIST ARTICOLI ***********");
-			for (Articoli articoliItem : articoliServiceInstance.listAll()) {
+			for (Articolo articoliItem : articoliServiceInstance.listAll()) {
 				System.out.println(articoliItem);
 				System.out.println("Il numero totale di articoli presenti nel DB ammonata a: "
 						+ articoliServiceInstance.listAll().size());
@@ -68,25 +68,25 @@ public class OrdineTest {
 
 			System.out.println("*********** PROVA UPDATE ARTICOLI ***********");
 			Long idArticoloDaAggiornare = 1L;
-			Articoli articoloDaAggiornare = articoliServiceInstance.caricaSingoloElemento(idArticoloDaAggiornare);
+			Articolo articoloDaAggiornare = articoliServiceInstance.caricaSingoloElemento(idArticoloDaAggiornare);
 			articoloDaAggiornare.setPrezzoSingolo(125);
 			articoliServiceInstance.aggiorna(articoloDaAggiornare);
 
 			// TEST METODI CRUD PER CATEGORIE
 			System.out.println("*********** PROVA INSERISCI CATEGORIA ***********");
-			Categorie categoriaNuova = new Categorie("attrezzi cucina");
+			Categoria categoriaNuova = new Categoria("attrezzi cucina");
 			categorieServiceInstance.inserisciNuovo(categoriaNuova);
 
 			System.out.println("*********** PROVA RIMOZIONE CATEGORIA ***********");
 			Long idCategoriaDaRimuovere = 6L;
-			Categorie categoriaDaRimuovere = categorieServiceInstance.caricaSingoloElemento(idCategoriaDaRimuovere);
+			Categoria categoriaDaRimuovere = categorieServiceInstance.caricaSingoloElemento(idCategoriaDaRimuovere);
 			if (idCategoriaDaRimuovere != null) {
 				System.out.println("Categoria caricata con successo: " + categoriaDaRimuovere);
 				categorieServiceInstance.rimuovi(categoriaDaRimuovere);
 			}
 
 			System.out.println("*********** PROVA LIST CATEGORIE ***********");
-			for (Categorie categorieItem : categorieServiceInstance.listAll()) {
+			for (Categoria categorieItem : categorieServiceInstance.listAll()) {
 				System.out.println(categorieItem);
 				System.out.println("Il numero totale di categorie presenti nel DB ammonata a: "
 						+ categorieServiceInstance.listAll().size());
@@ -94,29 +94,29 @@ public class OrdineTest {
 
 			System.out.println("*********** PROVA UPDATE CATEGORIE ***********");
 			Long idCategoriaDaAggiornare = 3L;
-			Categorie categoriaDaAggiornare = categorieServiceInstance.caricaSingoloElemento(idCategoriaDaAggiornare);
+			Categoria categoriaDaAggiornare = categorieServiceInstance.caricaSingoloElemento(idCategoriaDaAggiornare);
 			categoriaDaAggiornare.setDescrizione("hobby");
 			categorieServiceInstance.aggiorna(categoriaDaAggiornare);
 
 			// TEST DUE METODI FINDALLBY
 			System.out.println("*********** PROVA TROVA GLI ORDINI BY ARTICOLI ***********");
 			Long idOrdinePerRicerca = 3L;
-			Articoli articoloPerRicerca = articoliServiceInstance.caricaSingoloElemento(idOrdinePerRicerca);
+			Articolo articoloPerRicerca = articoliServiceInstance.caricaSingoloElemento(idOrdinePerRicerca);
 			for (Ordine ordineItem : ordineServiceInstance.cercaTuttiGliOrdiniTramiteArticoli(articoloPerRicerca)) {
 				System.out.println(ordineItem);
 			}
 
 			System.out.println("*********** PROVA TROVA GLI ARTICOLI BY CATEGORIE ***********");
 			Long idCategoriaPerRicerca = 4L;
-			Categorie categoriaPerRicerca = categorieServiceInstance.caricaSingoloElemento(idCategoriaPerRicerca);
-			for (Articoli articoloItem : articoliServiceInstance
+			Categoria categoriaPerRicerca = categorieServiceInstance.caricaSingoloElemento(idCategoriaPerRicerca);
+			for (Articolo articoloItem : articoliServiceInstance
 					.cercaTuttiGliArticoliTramiteCategorie(categoriaPerRicerca)) {
 				System.out.println(articoloItem);
 			}
 
 			System.out.println("*********** PROVA COLLEGO ARTICOLI A CATEGORIA ***********");
-			Articoli articoloDaCollegare = articoliServiceInstance.caricaSingoloElemento(3L);
-			Categorie categoriaDaInserireECollegare = new Categorie("posate in alluminio");
+			Articolo articoloDaCollegare = articoliServiceInstance.caricaSingoloElemento(3L);
+			Categoria categoriaDaInserireECollegare = new Categoria("posate in alluminio");
 			categorieServiceInstance.inserisciNuovo(categoriaDaInserireECollegare);
 			if (articoloDaCollegare != null) {
 				articoliServiceInstance.aggiungiCategorie(articoloDaCollegare, categoriaDaInserireECollegare);

@@ -16,8 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "articoli")
-public class Articoli {
+@Table(name = "articolo")
+public class Articolo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,13 +31,13 @@ public class Articoli {
 	@JoinColumn(name = "ordine_id")
 	private Ordine ordine;
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "articoli_categorie", joinColumns = @JoinColumn(name = "articoli_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "categorie_id", referencedColumnName = "ID"))
-	Set<Categorie> categorie = new HashSet<Categorie>();
+	@JoinTable(name = "articolo_categoria", joinColumns = @JoinColumn(name = "articolo_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "ID"))
+	Set<Categoria> categorie = new HashSet<Categoria>();
 
-	public Articoli() {
+	public Articolo() {
 	}
 
-	public Articoli(String descrizione, int prezzoSingolo) {
+	public Articolo(String descrizione, int prezzoSingolo) {
 		super();
 		this.descrizione = descrizione;
 		this.prezzoSingolo = prezzoSingolo;
@@ -75,11 +75,11 @@ public class Articoli {
 		this.ordine = ordine;
 	}
 
-	public Set<Categorie> getCategorie() {
+	public Set<Categoria> getCategorie() {
 		return categorie;
 	}
 
-	public void setCategorie(Set<Categorie> categorie) {
+	public void setCategorie(Set<Categoria> categorie) {
 		this.categorie = categorie;
 	}
 
@@ -89,12 +89,12 @@ public class Articoli {
 		return "Aricoli [id= " + id + ", descrizione= " + descrizione + ", prezzoSingolo= " + prezzoSingolo + "]";
 	}
 
-	public void addToCategorie(Categorie categorieInstance) {
+	public void addToCategorie(Categoria categorieInstance) {
 		this.categorie.add(categorieInstance);
 		categorieInstance.getArticoli().add(this);
 	}
 
-	public void removeFromCategorie(Categorie categorieInstance) {
+	public void removeFromCategorie(Categoria categorieInstance) {
 		this.categorie.remove(categorieInstance);
 		categorieInstance.getArticoli().remove(this);
 	}

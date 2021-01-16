@@ -2,8 +2,8 @@ package it.ordinearticolicategoriejpamaven.dao;
 
 public class MyDAOFactory {
 	private static OrdineDAO ORDINE_DAO_INSTANCE = null;
-	private static ArticoliDAO ARTICOLI_DAO_INSTANCE = null;
-	private static CategorieDAO CATEGORIE_DAO_INSTANCE = null;
+	private static ArticoloDAO ARTICOLI_DAO_INSTANCE = null;
+	private static CategoriaDAO CATEGORIE_DAO_INSTANCE = null;
 
 	public static OrdineDAO getOrdineDAOInstance() {
 		if (ORDINE_DAO_INSTANCE == null)
@@ -11,15 +11,15 @@ public class MyDAOFactory {
 		return ORDINE_DAO_INSTANCE;
 	}
 
-	public static ArticoliDAO getArticoliDAOInstance() {
+	public static ArticoloDAO getArticoliDAOInstance() {
 		if (ARTICOLI_DAO_INSTANCE == null)
-			ARTICOLI_DAO_INSTANCE = new ArticoliDAOImpl();
+			ARTICOLI_DAO_INSTANCE = new ArticoloDAOImpl();
 		return ARTICOLI_DAO_INSTANCE;
 	}
 
-	public static CategorieDAO getCategorieDAOInstance() {
+	public static CategoriaDAO getCategorieDAOInstance() {
 		if (CATEGORIE_DAO_INSTANCE == null)
-			CATEGORIE_DAO_INSTANCE = new CategorieDAOImpl();
+			CATEGORIE_DAO_INSTANCE = new CategoriaDAOImpl();
 		return CATEGORIE_DAO_INSTANCE;
 	}
 

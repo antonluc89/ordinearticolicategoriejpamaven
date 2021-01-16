@@ -25,7 +25,7 @@ public class Ordine {
 	@Column(name = "indirizzospedizione")
 	private String indirizzoSpedizione;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ordine")
-	private Set<Articoli> articoli = new HashSet<Articoli>();
+	private Set<Articolo> articoli = new HashSet<Articolo>();
 
 	public Ordine() {
 	}
@@ -60,11 +60,11 @@ public class Ordine {
 		this.indirizzoSpedizione = indirizzoSpedizione;
 	}
 
-	public Set<Articoli> getArticoli() {
+	public Set<Articolo> getArticoli() {
 		return articoli;
 	}
 
-	public void setArticoli(Set<Articoli> articoli) {
+	public void setArticoli(Set<Articolo> articoli) {
 		this.articoli = articoli;
 	}
 

@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 
 import it.ordinearticolicategoriejpamaven.dao.EntityManagerUtil;
 import it.ordinearticolicategoriejpamaven.dao.OrdineDAO;
-import it.ordinearticolicategoriejpamaven.model.Articoli;
+import it.ordinearticolicategoriejpamaven.model.Articolo;
 import it.ordinearticolicategoriejpamaven.model.Ordine;
 
 public class OrdineServiceImpl implements OrdineService {
@@ -96,7 +96,7 @@ public class OrdineServiceImpl implements OrdineService {
 
 			ordineInstance = entityManager.merge(ordineInstance);
 
-			for (Articoli articoliItem : ordineInstance.getArticoli()) {
+			for (Articolo articoliItem : ordineInstance.getArticoli()) {
 				articoliItem.setOrdine(null);
 				ordineInstance.getArticoli().remove(articoliItem);
 			}
@@ -112,7 +112,7 @@ public class OrdineServiceImpl implements OrdineService {
 	}
 
 	@Override
-	public List<Ordine> cercaTuttiGliOrdiniTramiteArticoli(Articoli articoliInstance) throws Exception {
+	public List<Ordine> cercaTuttiGliOrdiniTramiteArticoli(Articolo articoliInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {

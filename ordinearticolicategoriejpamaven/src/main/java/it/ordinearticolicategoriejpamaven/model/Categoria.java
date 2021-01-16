@@ -13,8 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "categorie")
-public class Categorie {
+@Table(name = "categoria")
+public class Categoria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +24,12 @@ public class Categorie {
 	private String descrizione;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorie")
-	private Set<Articoli> articoli = new HashSet<Articoli>();
+	private Set<Articolo> articoli = new HashSet<Articolo>();
 
-	public Categorie() {
+	public Categoria() {
 	}
 
-	public Categorie(String descrizione) {
+	public Categoria(String descrizione) {
 		this.descrizione = descrizione;
 	}
 
@@ -49,11 +49,11 @@ public class Categorie {
 		this.descrizione = descrizione;
 	}
 
-	public Set<Articoli> getArticoli() {
+	public Set<Articolo> getArticoli() {
 		return articoli;
 	}
 
-	public void setArticoli(Set<Articoli> articoli) {
+	public void setArticoli(Set<Articolo> articoli) {
 		this.articoli = articoli;
 	}
 
@@ -62,12 +62,12 @@ public class Categorie {
 		return "Categorie [id= " + id + ", descrizione= " + descrizione + "]";
 	}
 
-	public void addToArticoli(Articoli articoliInstance) {
+	public void addToArticoli(Articolo articoliInstance) {
 		this.articoli.add(articoliInstance);
 		articoliInstance.getCategorie().add(this);
 	}
 
-	public void removeFromArticoli(Articoli articoliInstance) {
+	public void removeFromArticoli(Articolo articoliInstance) {
 		this.articoli.remove(articoliInstance);
 		articoliInstance.getCategorie().add(this);
 	}

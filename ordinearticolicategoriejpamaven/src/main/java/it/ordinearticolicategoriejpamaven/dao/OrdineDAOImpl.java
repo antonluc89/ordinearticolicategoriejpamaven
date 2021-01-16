@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import it.ordinearticolicategoriejpamaven.model.Articoli;
+import it.ordinearticolicategoriejpamaven.model.Articolo;
 import it.ordinearticolicategoriejpamaven.model.Ordine;
 
 public class OrdineDAOImpl implements OrdineDAO {
@@ -56,7 +56,7 @@ public class OrdineDAOImpl implements OrdineDAO {
 	}
 
 	@Override
-	public List<Ordine> findAllByArticoli(Articoli articoliInput) {
+	public List<Ordine> findAllByArticoli(Articolo articoliInput) {
 		TypedQuery<Ordine> query = entityManager
 				.createQuery("select o FROM Ordine o join o.articoli a where a = :articoli", Ordine.class);
 		query.setParameter("articoli", articoliInput);

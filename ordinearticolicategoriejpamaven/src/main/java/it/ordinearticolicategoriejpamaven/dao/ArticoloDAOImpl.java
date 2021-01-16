@@ -5,25 +5,25 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import it.ordinearticolicategoriejpamaven.model.Articoli;
-import it.ordinearticolicategoriejpamaven.model.Categorie;
+import it.ordinearticolicategoriejpamaven.model.Articolo;
+import it.ordinearticolicategoriejpamaven.model.Categoria;
 
-public class ArticoliDAOImpl implements ArticoliDAO {
+public class ArticoloDAOImpl implements ArticoloDAO {
 
 	private EntityManager entityManager;
 
 	@Override
-	public List<Articoli> list() throws Exception {
-		return entityManager.createQuery("from Articoli", Articoli.class).getResultList();
+	public List<Articolo> list() throws Exception {
+		return entityManager.createQuery("from Articolo", Articolo.class).getResultList();
 	}
 
 	@Override
-	public Articoli get(Long id) throws Exception {
-		return entityManager.find(Articoli.class, id);
+	public Articolo get(Long id) throws Exception {
+		return entityManager.find(Articolo.class, id);
 	}
 
 	@Override
-	public void update(Articoli articoliInstance) throws Exception {
+	public void update(Articolo articoliInstance) throws Exception {
 		if (articoliInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
@@ -31,7 +31,7 @@ public class ArticoliDAOImpl implements ArticoliDAO {
 	}
 
 	@Override
-	public void insert(Articoli articoliInstance) throws Exception {
+	public void insert(Articolo articoliInstance) throws Exception {
 		if (articoliInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
@@ -40,7 +40,7 @@ public class ArticoliDAOImpl implements ArticoliDAO {
 	}
 
 	@Override
-	public void delete(Articoli articoliInstance) throws Exception {
+	public void delete(Articolo articoliInstance) throws Exception {
 		if (articoliInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
@@ -53,9 +53,9 @@ public class ArticoliDAOImpl implements ArticoliDAO {
 	}
 
 	@Override
-	public List<Articoli> findAllByCategorie(Categorie categorieInput) {
-		TypedQuery<Articoli> query = entityManager
-				.createQuery("select a FROM Articoli a join a.categorie c where c = :categorie", Articoli.class);
+	public List<Articolo> findAllByCategoria(Categoria categorieInput) {
+		TypedQuery<Articolo> query = entityManager
+				.createQuery("select a FROM Articoli a join a.categorie c where c = :categorie", Articolo.class);
 		query.setParameter("categorie", categorieInput);
 		return query.getResultList();
 	}

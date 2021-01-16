@@ -4,20 +4,20 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import it.ordinearticolicategoriejpamaven.dao.ArticoliDAO;
+import it.ordinearticolicategoriejpamaven.dao.ArticoloDAO;
 import it.ordinearticolicategoriejpamaven.dao.EntityManagerUtil;
-import it.ordinearticolicategoriejpamaven.model.Articoli;
-import it.ordinearticolicategoriejpamaven.model.Categorie;
+import it.ordinearticolicategoriejpamaven.model.Articolo;
+import it.ordinearticolicategoriejpamaven.model.Categoria;
 import it.ordinearticolicategoriejpamaven.model.Ordine;
 
-public class ArticoliServiceImpl implements ArticoliService {
+public class ArticoloServiceImpl implements ArticoloService {
 
-	private ArticoliDAO articoliDAO;
+	private ArticoloDAO articoliDAO;
 
 	private OrdineService ordineService = MyServiceFactory.getOrdineServiceInstance();
 
 	@Override
-	public List<Articoli> listAll() throws Exception {
+	public List<Articolo> listAll() throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -34,7 +34,7 @@ public class ArticoliServiceImpl implements ArticoliService {
 	}
 
 	@Override
-	public Articoli caricaSingoloElemento(Long id) throws Exception {
+	public Articolo caricaSingoloElemento(Long id) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -51,7 +51,7 @@ public class ArticoliServiceImpl implements ArticoliService {
 	}
 
 	@Override
-	public void aggiorna(Articoli articoliInstance) throws Exception {
+	public void aggiorna(Articolo articoliInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -71,7 +71,7 @@ public class ArticoliServiceImpl implements ArticoliService {
 	}
 
 	@Override
-	public void inserisciNuovo(Articoli articoliInstance) throws Exception {
+	public void inserisciNuovo(Articolo articoliInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -91,7 +91,7 @@ public class ArticoliServiceImpl implements ArticoliService {
 	}
 
 	@Override
-	public void rimuovi(Articoli articoliInstance) throws Exception {
+	public void rimuovi(Articolo articoliInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -119,13 +119,13 @@ public class ArticoliServiceImpl implements ArticoliService {
 	}
 
 	@Override
-	public List<Articoli> cercaTuttiGliArticoliTramiteCategorie(Categorie categorieInstance) throws Exception {
+	public List<Articolo> cercaTuttiGliArticoliTramiteCategorie(Categoria categorieInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
 			articoliDAO.setEntityManager(entityManager);
 
-			return articoliDAO.findAllByCategorie(categorieInstance);
+			return articoliDAO.findAllByCategoria(categorieInstance);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,7 +136,7 @@ public class ArticoliServiceImpl implements ArticoliService {
 	}
 
 	@Override
-	public void aggiungiCategorie(Articoli articoliInstance, Categorie categorieInstance) throws Exception {
+	public void aggiungiCategorie(Articolo articoliInstance, Categoria categorieInstance) throws Exception {
 
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
@@ -161,7 +161,7 @@ public class ArticoliServiceImpl implements ArticoliService {
 	}
 
 	@Override
-	public void setArticoliDAO(ArticoliDAO articoliDAO) {
+	public void setArticoliDAO(ArticoloDAO articoliDAO) {
 		this.articoliDAO = articoliDAO;
 
 	}

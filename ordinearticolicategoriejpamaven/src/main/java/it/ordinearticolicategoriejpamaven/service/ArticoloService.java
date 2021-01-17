@@ -20,6 +20,8 @@ public interface ArticoloService {
 	public List<Articolo> cercaTuttiGliArticoliTramiteCategorie(Categoria categoriaInstance) throws Exception;
 
 	public void aggiungiCategorie(Articolo articoloInstance, Categoria categoriaInstance) throws Exception;
+	
+	public Long cercaTuttiGliArticoliDiUnaCategoriaECalcolaLaSomma(Categoria categoriaInstance) throws Exception;
 
 	public void setArticoloDAO(ArticoloDAO articoloDAO);
 

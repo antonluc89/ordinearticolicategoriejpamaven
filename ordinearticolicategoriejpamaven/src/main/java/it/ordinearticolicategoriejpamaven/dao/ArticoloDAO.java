@@ -8,5 +8,7 @@ import it.ordinearticolicategoriejpamaven.model.Categoria;
 public interface ArticoloDAO extends IBaseDAO<Articolo> {
 
 	public List<Articolo> findAllByCategoria(Categoria categoriaInput);
-
+	
+	public Long findAllArticoliByCategoriaECalcolaSomma(Categoria categoriaInput);
+	
 }

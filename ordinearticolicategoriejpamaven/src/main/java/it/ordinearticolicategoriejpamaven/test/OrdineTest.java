@@ -137,6 +137,12 @@ public class OrdineTest {
 					.trovaTutteLeCategorieDegliArticoliDiUnDatoordine(ordinePerRicerca)) {
 				System.out.println(categoriaItem);
 			}
+			
+			System.out.println("*********** PROVA TROVA GLI ARTICOLI BY CATEGORIA E CALCOLA IL TOTALE ***********");
+			Long idCategoriaPerTotalePrezzoArticoli = 4L;
+			Categoria categoriaPerTotalePrezzoArticoli = categoriaServiceInstance.caricaSingoloElemento(idCategoriaPerTotalePrezzoArticoli);
+			Long prezzoTotale=articoloServiceInstance.cercaTuttiGliArticoliDiUnaCategoriaECalcolaLaSomma(categoriaPerTotalePrezzoArticoli);
+			System.out.println(prezzoTotale);
 
 		} catch (Exception e) {
 			e.printStackTrace();

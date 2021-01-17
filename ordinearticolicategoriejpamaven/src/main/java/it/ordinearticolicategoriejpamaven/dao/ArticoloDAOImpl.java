@@ -60,4 +60,12 @@ public class ArticoloDAOImpl implements ArticoloDAO {
 		return query.getResultList();
 	}
 
+	@Override
+	public Long findAllArticoliByCategoriaECalcolaSomma(Categoria categoriaInput) {
+		TypedQuery<Long> query = entityManager
+				.createQuery("select SUM(a.prezzoSingolo) FROM Articolo a join a.categorie c where c = :categoria",Long.class);
+		query.setParameter("categoria", categoriaInput);
+		return query.getSingleResult();
+	}
+
 }

@@ -151,5 +151,22 @@ public class OrdineServiceImpl implements OrdineService {
 			entityManager.close();
 		}
 	}
+	
+	@Override
+	public List<Ordine> trovaTuttiGliOrdiniDoveNomeDestinatario(String nomeDestinatario) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			ordineDAO.setEntityManager(entityManager);
+
+			return ordineDAO.findAllOrdiniByNomeDestinatario(nomeDestinatario);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
+	}
 
 }

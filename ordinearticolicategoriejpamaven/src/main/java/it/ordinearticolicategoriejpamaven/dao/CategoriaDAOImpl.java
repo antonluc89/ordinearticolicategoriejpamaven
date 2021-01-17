@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import it.ordinearticolicategoriejpamaven.model.Articolo;
 import it.ordinearticolicategoriejpamaven.model.Categoria;
 import it.ordinearticolicategoriejpamaven.model.Ordine;
 

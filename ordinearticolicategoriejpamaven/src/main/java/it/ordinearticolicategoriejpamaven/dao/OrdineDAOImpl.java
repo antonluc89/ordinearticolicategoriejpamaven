@@ -72,4 +72,12 @@ public class OrdineDAOImpl implements OrdineDAO {
 		return query.getResultList();
 	}
 
+	@Override
+	public List<Ordine> findAllOrdiniByNomeDestinatario(String nameDestinatario) {
+		TypedQuery<Ordine> query = entityManager
+				.createQuery("select o FROM Ordine o where o.nomeDestinatario = :nome", Ordine.class);
+		query.setParameter("nome", nameDestinatario);
+		return query.getResultList();
+	}
+
 }

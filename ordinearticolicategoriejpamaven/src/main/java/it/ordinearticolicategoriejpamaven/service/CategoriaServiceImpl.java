@@ -4,15 +4,20 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import it.ordinearticolicategoriejpamaven.dao.ArticoloDAO;
 import it.ordinearticolicategoriejpamaven.dao.CategoriaDAO;
 import it.ordinearticolicategoriejpamaven.dao.EntityManagerUtil;
+import it.ordinearticolicategoriejpamaven.dao.MyDAOFactory;
 import it.ordinearticolicategoriejpamaven.model.Articolo;
 import it.ordinearticolicategoriejpamaven.model.Categoria;
 import it.ordinearticolicategoriejpamaven.model.Ordine;
 
+
 public class CategoriaServiceImpl implements CategoriaService {
 
 	private CategoriaDAO categoriaDAO;
+	
+	private ArticoloDAO articoloDAO = MyDAOFactory.getArticoloDAOInstance();
 
 	private ArticoloService articoloService = MyServiceFactory.getArticoloServiceInstance();
 
@@ -121,7 +126,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 	}
 
 	@Override
-	public List<Categoria> trovaTutteLeCategorieDegliArticoliDiUnDatoordine(Ordine ordineInstance) {
+	public List<Categoria> trovaTutteLeCategorieDegliArticoliDiUnDatoordine(Ordine ordineInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -135,6 +140,36 @@ public class CategoriaServiceImpl implements CategoriaService {
 		} finally {
 			entityManager.close();
 		}
+	}
+	
+	@Override
+	public void aggiungiArticolo(Articolo articoloInstance, Categoria categoriaInstance) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			entityManager.getTransaction().begin();
+
+			articoloDAO.setEntityManager(entityManager);
+
+			articoloInstance = entityManager.merge(articoloInstance);
+
+			categoriaInstance = entityManager.merge(categoriaInstance);
+
+			categoriaInstance.getArticoli().add(articoloInstance);
+
+			articoloDAO.setEntityManager(entityManager);
+
+			articoloDAO.insert(articoloInstance);
+
+			articoloInstance.addToCategorie(categoriaInstance);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		}
+
 	}
 
 }

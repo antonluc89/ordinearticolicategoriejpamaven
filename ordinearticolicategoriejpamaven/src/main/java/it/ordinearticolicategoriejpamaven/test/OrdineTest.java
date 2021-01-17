@@ -114,7 +114,8 @@ public class OrdineTest {
 				System.out.println(articoloItem);
 			}
 
-			System.out.println("*********** PROVA COLLEGO ARTICOLO A CATEGORIA ***********");
+			//TEST METODI AGGIUNGI CATEGORIE E AGGIUNGI ARTICOLI
+			System.out.println("*********** PROVA AGGIUNGI CATEGORIA ***********");
 			Articolo articoloDaCollegare = articoloServiceInstance.caricaSingoloElemento(3L);
 			Categoria categoriaDaInserireECollegare = new Categoria("posate in alluminio");
 			categoriaServiceInstance.inserisciNuovo(categoriaDaInserireECollegare);
@@ -122,6 +123,15 @@ public class OrdineTest {
 				articoloServiceInstance.aggiungiCategorie(articoloDaCollegare, categoriaDaInserireECollegare);
 			}
 			
+			System.out.println("*********** PROVA AGGIUNGI ARTICOLO ***********");
+			Categoria categoriaDaCollegare = categoriaServiceInstance.caricaSingoloElemento(5L);
+			Articolo articoloDaInserireEPoiCollegare = new Articolo("tv",199);
+			articoloServiceInstance.inserisciNuovo(articoloDaInserireEPoiCollegare);
+			if (categoriaDaCollegare != null) {
+				categoriaServiceInstance.aggiungiArticolo(articoloDaInserireEPoiCollegare,categoriaDaCollegare);
+			}
+			
+			//TEST METODI RICHIESTI
 			System.out.println("*********** PROVA TROVA GLI ORDINI BY CATEGORIA ***********");
 			Long idCategoriaRicercaOrdini = 4L;
 			Categoria categoriRicercaOrdini = categoriaServiceInstance.caricaSingoloElemento(idCategoriaRicercaOrdini);
@@ -143,6 +153,12 @@ public class OrdineTest {
 			Categoria categoriaPerTotalePrezzoArticoli = categoriaServiceInstance.caricaSingoloElemento(idCategoriaPerTotalePrezzoArticoli);
 			Long prezzoTotale=articoloServiceInstance.cercaTuttiGliArticoliDiUnaCategoriaECalcolaLaSomma(categoriaPerTotalePrezzoArticoli);
 			System.out.println(prezzoTotale);
+			
+			System.out.println("*********** PROVA TROVA ORDINE BY NOME DESTINATARIO ***********");
+			for (Ordine ordineItem : ordineServiceInstance
+					.trovaTuttiGliOrdiniDoveNomeDestinatario("Giulia")) {
+				System.out.println(ordineItem);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

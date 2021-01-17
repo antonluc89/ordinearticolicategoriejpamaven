@@ -144,19 +144,43 @@ public class OrdineTest {
 			Long idOrdinePerRicercaCategorie = 2L;
 			Ordine ordinePerRicerca = ordineServiceInstance.caricaSingoloElemento(idOrdinePerRicercaCategorie);
 			for (Categoria categoriaItem : categoriaServiceInstance
-					.trovaTutteLeCategorieDegliArticoliDiUnDatoordine(ordinePerRicerca)) {
+					.trovaTutteLeCategorieDegliArticoliDiUnDatoOrdine(ordinePerRicerca)) {
 				System.out.println(categoriaItem);
 			}
 			
 			System.out.println("*********** PROVA TROVA GLI ARTICOLI BY CATEGORIA E CALCOLA IL TOTALE ***********");
-			Long idCategoriaPerTotalePrezzoArticoli = 4L;
+			Long idCategoriaPerTotalePrezzoArticoli = 7L;
 			Categoria categoriaPerTotalePrezzoArticoli = categoriaServiceInstance.caricaSingoloElemento(idCategoriaPerTotalePrezzoArticoli);
 			Long prezzoTotale=articoloServiceInstance.cercaTuttiGliArticoliDiUnaCategoriaECalcolaLaSomma(categoriaPerTotalePrezzoArticoli);
 			System.out.println(prezzoTotale);
 			
+			//TEST METODI A PIACERE
 			System.out.println("*********** PROVA TROVA ORDINE BY NOME DESTINATARIO ***********");
 			for (Ordine ordineItem : ordineServiceInstance
 					.trovaTuttiGliOrdiniDoveNomeDestinatario("Giulia")) {
+				System.out.println(ordineItem);
+			}
+			
+			System.out.println("*********** PROVA TROVA GLI ARTICOLI DATA UNA CATEGORIA E CALCOLA IL PREZZO MEDIO ***********");
+			Long idCategoriaPerCalcoloPrezzoMedioArticoli = 9L;
+			Categoria categoriaPerCalcoloPrezzoMedioArticoli = categoriaServiceInstance.caricaSingoloElemento(idCategoriaPerCalcoloPrezzoMedioArticoli);
+			Double prezzoMedio=articoloServiceInstance.cercaTuttiGliArticoliDataUnaCategoriaECalcolaIlPrezzoMedio(categoriaPerCalcoloPrezzoMedioArticoli);
+			System.out.println(prezzoMedio);
+			
+			System.out.println("*********** PROVA TROVA LA CATEGORIA DOVE PREZZO ARTICOLO COMPESO TRA ***********");
+			int sogliaPrezzoMinimo= 15;
+			int sogliaPrezzoMassimo= 45;
+			for (Categoria categoriaItem : categoriaServiceInstance.trovaCategoriaDovePrezzoArticoloCompresoTra(sogliaPrezzoMinimo, sogliaPrezzoMassimo)) {
+				System.out.println(categoriaItem);
+			}
+			
+			System.out.println("*********** PROVA TROVA ORDINE BY DESCRIZIONE CATEGORIA ***********");
+			for (Ordine ordineItem : ordineServiceInstance.trovaTuttiGliOrdiniTramiteDescrzioneCategoria("giardinaggio")) {
+				System.out.println(ordineItem);
+			}
+			
+			System.out.println("*********** PROVA TROVA ORDINE DOVE PREZZO UNITARIO ARTICOLO MAGGIORE DI ***********");
+			for (Ordine ordineItem : ordineServiceInstance.trovaTuttiGliOrdiniDoveAmmontarePrezzoDiUnArticoloMaggioreDi(50)) {
 				System.out.println(ordineItem);
 			}
 

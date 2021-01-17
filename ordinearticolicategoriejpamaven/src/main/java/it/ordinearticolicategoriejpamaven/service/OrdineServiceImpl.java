@@ -169,4 +169,38 @@ public class OrdineServiceImpl implements OrdineService {
 		}
 	}
 
+	@Override
+	public List<Ordine> trovaTuttiGliOrdiniTramiteDescrzioneCategoria(String descrizioneCategoria) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			ordineDAO.setEntityManager(entityManager);
+
+			return ordineDAO.findOrdineWhereDescrizioneCategoriaIs(descrizioneCategoria);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	public List<Ordine> trovaTuttiGliOrdiniDoveAmmontarePrezzoDiUnArticoloMaggioreDi(int prezzoInput) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			ordineDAO.setEntityManager(entityManager);
+
+			return ordineDAO.findAllWhereAmountOneArticlePriceGreatherThan(prezzoInput);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
+	}
+
 }

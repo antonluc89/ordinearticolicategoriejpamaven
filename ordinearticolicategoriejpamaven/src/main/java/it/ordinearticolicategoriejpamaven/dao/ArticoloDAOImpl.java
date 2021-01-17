@@ -67,5 +67,13 @@ public class ArticoloDAOImpl implements ArticoloDAO {
 		query.setParameter("categoria", categoriaInput);
 		return query.getSingleResult();
 	}
+	
+	@Override
+	public Double findAllArticoliByCategoriaECalcolaIlPrezzoMedio(Categoria categoriaInput) {
+		TypedQuery<Double> query = entityManager
+				.createQuery("select AVG(a.prezzoSingolo) FROM Articolo a join a.categorie c where c = :categoria",Double.class);
+		query.setParameter("categoria", categoriaInput);
+		return query.getSingleResult();
+	}
 
 }

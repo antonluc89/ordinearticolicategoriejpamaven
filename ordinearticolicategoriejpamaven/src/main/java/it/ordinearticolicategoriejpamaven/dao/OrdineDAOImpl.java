@@ -79,5 +79,20 @@ public class OrdineDAOImpl implements OrdineDAO {
 		query.setParameter("nome", nameDestinatario);
 		return query.getResultList();
 	}
+	
+	@Override
+	public List<Ordine> findOrdineWhereDescrizioneCategoriaIs(String categoryDescriptionInput) {
+		TypedQuery<Ordine> query = entityManager
+				.createQuery("select o FROM Ordine o join o.articoli a join a.categorie c where c.descrizione = :descrizioneCategoria", Ordine.class);
+		query.setParameter("descrizioneCategoria", categoryDescriptionInput);
+		return query.getResultList();
+	}
 
+	@Override
+	public List<Ordine> findAllWhereAmountOneArticlePriceGreatherThan(int priceInput) {
+		TypedQuery<Ordine> query = entityManager
+				.createQuery("select o FROM Ordine o join o.articoli a where a.prezzoSingolo > :sogliaPrezzo", Ordine.class);
+		query.setParameter("sogliaPrezzo", priceInput);
+		return query.getResultList();
+	}
 }

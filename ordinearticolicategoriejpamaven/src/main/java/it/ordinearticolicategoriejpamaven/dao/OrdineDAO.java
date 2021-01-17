@@ -14,5 +14,9 @@ public interface OrdineDAO extends IBaseDAO<Ordine> {
 	
 	public List<Ordine> findAllOrdiniByNomeDestinatario(String nameDestinatario);
 	
+	public List<Ordine> findOrdineWhereDescrizioneCategoriaIs(String categoryDescriptionInput);
+	
+	public List<Ordine> findAllWhereAmountOneArticlePriceGreatherThan(int priceInput);
+	
 
 }

@@ -24,6 +24,10 @@ public interface OrdineService {
 	public List<Ordine> cercaTuttiGliOrdiniEffettuatiDaUnaCategoria(Categoria categoriaInstance) throws Exception;
 	
 	public List<Ordine> trovaTuttiGliOrdiniDoveNomeDestinatario(String nomeDestinatario) throws Exception;
+	
+	public List<Ordine> trovaTuttiGliOrdiniTramiteDescrzioneCategoria(String descrizioneCategoria) throws Exception;
+	
+	public List<Ordine> trovaTuttiGliOrdiniDoveAmmontarePrezzoDiUnArticoloMaggioreDi(int prezzoInput) throws Exception;
 
 	public void setOrdineDAO(OrdineDAO ordineDAO);
 

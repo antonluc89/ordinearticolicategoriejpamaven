@@ -11,4 +11,6 @@ public interface ArticoloDAO extends IBaseDAO<Articolo> {
 	
 	public Long findAllArticoliByCategoriaECalcolaSomma(Categoria categoriaInput);
 	
+	public Double findAllArticoliByCategoriaECalcolaIlPrezzoMedio(Categoria categoriaInput);
+	
 }

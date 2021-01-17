@@ -126,7 +126,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 	}
 
 	@Override
-	public List<Categoria> trovaTutteLeCategorieDegliArticoliDiUnDatoordine(Ordine ordineInstance) throws Exception {
+	public List<Categoria> trovaTutteLeCategorieDegliArticoliDiUnDatoOrdine(Ordine ordineInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
@@ -170,6 +170,23 @@ public class CategoriaServiceImpl implements CategoriaService {
 			throw e;
 		}
 
+	}
+
+	@Override
+	public List<Categoria> trovaCategoriaDovePrezzoArticoloCompresoTra(int prezzoMinimo, int prezzoMassimo) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			categoriaDAO.setEntityManager(entityManager);
+
+			return categoriaDAO.findCategoriaDovePrezzoArticoloBetween(prezzoMinimo, prezzoMassimo);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
 	}
 
 }

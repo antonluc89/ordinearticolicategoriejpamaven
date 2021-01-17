@@ -183,5 +183,23 @@ public class ArticoloServiceImpl implements ArticoloService {
 			entityManager.close();
 		}
 	}
+	
+	@Override
+	public Double cercaTuttiGliArticoliDataUnaCategoriaECalcolaIlPrezzoMedio(Categoria categoriaInstance)
+			throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			articoloDAO.setEntityManager(entityManager);
+
+			return articoloDAO.findAllArticoliByCategoriaECalcolaIlPrezzoMedio(categoriaInstance);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
+	}
 
 }

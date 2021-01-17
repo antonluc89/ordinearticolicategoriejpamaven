@@ -19,9 +19,11 @@ public interface CategoriaService {
 
 	public void rimuovi(Categoria categoriaInstance) throws Exception;
 	
-	public List<Categoria> trovaTutteLeCategorieDegliArticoliDiUnDatoordine(Ordine ordineInstance)throws Exception;
+	public List<Categoria> trovaTutteLeCategorieDegliArticoliDiUnDatoOrdine(Ordine ordineInstance)throws Exception;
 	
 	public void aggiungiArticolo(Articolo articoloInstance, Categoria categoriaInstance) throws Exception;
+	
+	public List<Categoria> trovaCategoriaDovePrezzoArticoloCompresoTra(int prezzoMinimo,int prezzoMassimo) throws Exception;
 
 	public void setCategoriaDAO(CategoriaDAO categoriaDAO);
 

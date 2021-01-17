@@ -60,4 +60,12 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 		return query.getResultList();
 	}
 
+	@Override
+	public List<Categoria> findCategoriaDovePrezzoArticoloBetween(int priceMin, int priceMax) {
+		TypedQuery<Categoria> query = entityManager
+				.createQuery("select c FROM Categoria c join c.articoli a where a.prezzoSingolo between ?1 and ?2",Categoria.class);
+		query.setParameter(1, priceMin).setParameter(2, priceMax);
+		return query.getResultList();
+	}
+
 }

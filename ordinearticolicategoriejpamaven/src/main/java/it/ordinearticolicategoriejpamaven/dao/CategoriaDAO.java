@@ -8,5 +8,7 @@ import it.ordinearticolicategoriejpamaven.model.Ordine;
 public interface CategoriaDAO extends IBaseDAO<Categoria> {
 	
 	public List<Categoria> findAllCategoriaByArticoloInReleatedOrder(Ordine ordineInput);
+	
+	public List<Categoria> findCategoriaDovePrezzoArticoloBetween(int priceMin, int priceMax);
 
 }

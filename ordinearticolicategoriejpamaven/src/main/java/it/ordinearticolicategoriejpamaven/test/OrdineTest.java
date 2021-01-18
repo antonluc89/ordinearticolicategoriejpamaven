@@ -23,7 +23,7 @@ public class OrdineTest {
 			ordineServiceInstance.inserisciNuovo(ordineNuovo);
 
 			System.out.println("*********** PROVA RIMOZIONE ORDINE ***********");
-			Long idOrdineDaRimuovere = 3L;
+			Long idOrdineDaRimuovere = 4L;
 			Ordine ordineDaRimuovere = ordineServiceInstance.caricaSingoloElemento(idOrdineDaRimuovere);
 			if (idOrdineDaRimuovere != null) {
 				System.out.println("Ordine da rimuovere caricato con successo: " + ordineDaRimuovere);
@@ -52,7 +52,7 @@ public class OrdineTest {
 			articoloServiceInstance.inserisciNuovo(articoliNuovo);
 
 			System.out.println("*********** PROVA RIMOZIONE ARTICOLO ***********");
-			Long idArticoloDaRimuovere = 6L;
+			Long idArticoloDaRimuovere = 5L;
 			Articolo articoloDaRimuovere = articoloServiceInstance.caricaSingoloElemento(idArticoloDaRimuovere);
 			if (idArticoloDaRimuovere != null) {
 				System.out.println("Articolo da rimuovere caricato con successo: " + articoloDaRimuovere);
@@ -78,7 +78,7 @@ public class OrdineTest {
 			categoriaServiceInstance.inserisciNuovo(categoriaNuova);
 
 			System.out.println("*********** PROVA RIMOZIONE CATEGORIA ***********");
-			Long idCategoriaDaRimuovere = 7L;
+			Long idCategoriaDaRimuovere = 6L;
 			Categoria categoriaDaRimuovere = categoriaServiceInstance.caricaSingoloElemento(idCategoriaDaRimuovere);
 			if (idCategoriaDaRimuovere != null) {
 				System.out.println("Categoria caricata con successo: " + categoriaDaRimuovere);

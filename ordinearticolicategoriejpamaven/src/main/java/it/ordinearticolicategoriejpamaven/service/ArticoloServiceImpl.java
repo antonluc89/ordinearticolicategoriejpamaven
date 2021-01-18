@@ -104,8 +104,7 @@ public class ArticoloServiceImpl implements ArticoloService {
 			if (!listaOrdineNeldB.isEmpty())
 				for (Ordine ordineItem : listaOrdineNeldB) {
 					ordineItem.setArticoli(null);
-					;
-
+					
 					ordineService.aggiorna(ordineItem);
 				}
 			articoloDAO.delete(articoloInstance);
@@ -117,7 +116,7 @@ public class ArticoloServiceImpl implements ArticoloService {
 			throw e;
 		}
 	}
-
+	
 	@Override
 	public List<Articolo> cercaTuttiGliArticoliTramiteCategorie(Categoria categoriaInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();

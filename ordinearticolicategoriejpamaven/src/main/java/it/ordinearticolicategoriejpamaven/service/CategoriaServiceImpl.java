@@ -12,11 +12,10 @@ import it.ordinearticolicategoriejpamaven.model.Articolo;
 import it.ordinearticolicategoriejpamaven.model.Categoria;
 import it.ordinearticolicategoriejpamaven.model.Ordine;
 
-
 public class CategoriaServiceImpl implements CategoriaService {
 
 	private CategoriaDAO categoriaDAO;
-	
+
 	private ArticoloDAO articoloDAO = MyDAOFactory.getArticoloDAOInstance();
 
 	private ArticoloService articoloService = MyServiceFactory.getArticoloServiceInstance();
@@ -99,16 +98,23 @@ public class CategoriaServiceImpl implements CategoriaService {
 		try {
 			entityManager.getTransaction().begin();
 
-			categoriaDAO.setEntityManager(entityManager);
+			articoloDAO.setEntityManager(entityManager);
+			categoriaInstance = entityManager.merge(categoriaInstance);
 
 			List<Articolo> listaArticoliNeldB = articoloService
 					.cercaTuttiGliArticoliTramiteCategorie(categoriaInstance);
 			if (!listaArticoliNeldB.isEmpty())
 				for (Articolo articoloItem : listaArticoliNeldB) {
-					articoloItem.setCategorie(null);
 
-					articoloService.aggiorna(articoloItem);
+					articoloItem = entityManager.merge(articoloItem);
+					categoriaInstance.removeFromArticoli(articoloItem);
+
+					categoriaDAO.setEntityManager(entityManager);
+					categoriaDAO.update(categoriaInstance);
+
+					articoloItem.getCategorie().remove(categoriaInstance);
 				}
+
 			categoriaDAO.delete(categoriaInstance);
 
 			entityManager.getTransaction().commit();
@@ -141,7 +147,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 			entityManager.close();
 		}
 	}
-	
+
 	@Override
 	public void aggiungiArticolo(Articolo articoloInstance, Categoria categoriaInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
@@ -173,7 +179,8 @@ public class CategoriaServiceImpl implements CategoriaService {
 	}
 
 	@Override
-	public List<Categoria> trovaCategoriaDovePrezzoArticoloCompresoTra(int prezzoMinimo, int prezzoMassimo) throws Exception {
+	public List<Categoria> trovaCategoriaDovePrezzoArticoloCompresoTra(int prezzoMinimo, int prezzoMassimo)
+			throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {

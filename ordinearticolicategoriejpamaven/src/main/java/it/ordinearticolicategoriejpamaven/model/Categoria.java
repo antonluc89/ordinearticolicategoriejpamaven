@@ -22,7 +22,6 @@ public class Categoria {
 	private Long id;
 	@Column(name = "descrizione")
 	private String descrizione;
-
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorie")
 	private Set<Articolo> articoli = new HashSet<Articolo>();
 
@@ -66,7 +65,7 @@ public class Categoria {
 		this.articoli.add(articoliInstance);
 		articoliInstance.getCategorie().add(this);
 	}
-
+	
 	public void removeFromArticoli(Articolo articoliInstance) {
 		this.articoli.remove(articoliInstance);
 		articoliInstance.getCategorie().add(this);

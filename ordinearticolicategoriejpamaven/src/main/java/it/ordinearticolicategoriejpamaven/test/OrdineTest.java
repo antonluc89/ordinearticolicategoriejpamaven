@@ -149,10 +149,13 @@ public class OrdineTest {
 			}
 			
 			System.out.println("*********** PROVA TROVA GLI ARTICOLI BY CATEGORIA E CALCOLA IL TOTALE ***********");
-			Long idCategoriaPerTotalePrezzoArticoli = 7L;
-			Categoria categoriaPerTotalePrezzoArticoli = categoriaServiceInstance.caricaSingoloElemento(idCategoriaPerTotalePrezzoArticoli);
-			Long prezzoTotale=articoloServiceInstance.cercaTuttiGliArticoliDiUnaCategoriaECalcolaLaSomma(categoriaPerTotalePrezzoArticoli);
-			System.out.println(prezzoTotale);
+			Long idCategoriaPerTotalePrezzoArticoli = 5L;
+			Categoria categoriaPerTotalePrezzoArticoli = categoriaServiceInstance
+					.caricaSingoloElemento(idCategoriaPerTotalePrezzoArticoli);
+			Long prezzoTotale = articoloServiceInstance
+					.cercaTuttiGliArticoliDiUnaCategoriaECalcolaLaSomma(categoriaPerTotalePrezzoArticoli);
+			int prezzoTot = prezzoTotale.intValue();
+			System.out.println(prezzoTot);
 			
 			//TEST METODI A PIACERE
 			System.out.println("*********** PROVA TROVA ORDINE BY NOME DESTINATARIO ***********");

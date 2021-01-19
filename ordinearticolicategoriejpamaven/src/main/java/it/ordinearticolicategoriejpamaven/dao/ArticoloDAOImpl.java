@@ -76,4 +76,11 @@ public class ArticoloDAOImpl implements ArticoloDAO {
 		return query.getSingleResult();
 	}
 
+	@Override
+	public List<Articolo> findAllArticoliWhereForeigKeyOrdineIsNull() {
+		TypedQuery<Articolo> query = entityManager
+				.createQuery("select a FROM Articolo a left join fetch a.ordine o where o.id IS NULL", Articolo.class);
+			return query.getResultList();
+	}
+
 }

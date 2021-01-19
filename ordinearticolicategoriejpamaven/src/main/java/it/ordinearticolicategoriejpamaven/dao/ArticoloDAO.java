@@ -13,4 +13,6 @@ public interface ArticoloDAO extends IBaseDAO<Articolo> {
 	
 	public Double findAllArticoliByCategoriaECalcolaIlPrezzoMedio(Categoria categoriaInput);
 	
+	public List<Articolo> findAllArticoliWhereForeigKeyOrdineIsNull();
+	
 }

@@ -24,6 +24,8 @@ public interface ArticoloService {
 	public Long cercaTuttiGliArticoliDiUnaCategoriaECalcolaLaSomma(Categoria categoriaInstance) throws Exception;
 	
 	public Double cercaTuttiGliArticoliDataUnaCategoriaECalcolaIlPrezzoMedio(Categoria categoriaInstance)	throws Exception; 
+	
+	public List<Articolo> cercaTuttiGliArticoliConForeigKeyOrdineIsNull() throws Exception;
 
 	public void setArticoloDAO(ArticoloDAO articoloDAO);
 

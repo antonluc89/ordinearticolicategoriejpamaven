@@ -186,6 +186,11 @@ public class OrdineTest {
 			for (Ordine ordineItem : ordineServiceInstance.trovaTuttiGliOrdiniDoveAmmontarePrezzoDiUnArticoloMaggioreDi(50)) {
 				System.out.println(ordineItem);
 			}
+			
+			System.out.println("*********** PROVA TROVA ARTICOLO DOVE FOREIGN KEY ORRDINE IS NULL ***********");
+			for (Articolo articoloItem : articoloServiceInstance.cercaTuttiGliArticoliConForeigKeyOrdineIsNull()) {
+				System.out.println(articoloItem);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
